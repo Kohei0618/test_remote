@@ -2,13 +2,14 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>課題</title>
+  <title>GitHub検索</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <header>
-  <h1>課題</h1>
+  <h1>GitHub検索</h1>
   <nav>
     <ul class="nav-list">
       <li><a href="../index.html">ホーム</a></li>
@@ -21,18 +22,25 @@
 </header>
 
 <section>
-  <h2>課題一覧</h2>
-  <ul>
-    <li class="card">
-      <a href="JavaScriptWork/work_1_3/1_3function.html">課題1_3</a>
-    </li>
-    <li class="card">
-      <a href="JavaScriptWork/work_1_4/1_4.html">課題1_4</a>
-    </li>
-    <li class="card">
-      <a href="JavaScriptWork/work_1_6/1_6.html">課題1_6</a>
-    </li>
-  </ul>
+  <div class="contact-form">
+    <form>
+      <h2>Githubユーザーを検索しよう</h2>
+      <input type="text" id="username" placeholder="Githubユーザー名を入力">
+      
+      <button id="searchBtn">検索</button>
+      <div id="result"></div>
+      <script src="../start-folder/Javascript/githubreseach.js"></script>
+    </form>
+
+    <div class="back-link">
+      <a href="../index.html">← 戻る</a>
+    </div>
+  </div>
 </section>
+
+<footer>
+  <p>&copy; 2026 私のポートフォリオ</p>
+</footer>
+
 </body>
 </html>
