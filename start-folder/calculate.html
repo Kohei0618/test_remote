@@ -64,45 +64,40 @@
   </div>
 
   <script>
-    function calculate() {
-      const num1 = parseFloat(document.getElementById('num1').value);
-      const num2 = parseFloat(document.getElementById('num2').value);
-      const operator = document.getElementById('operator').value;
+    const num1El = document.getElementById('num1');
+    const num2El = document.getElementById('num2');
+    const operatorEl = document.getElementById('operator');
+    const historyEl = document.getElementById('history');
 
-      if (isNaN(num1) || isNaN(num2)) {
-        alert('数値を正しく入力してください');
-        return;
-      }
+    function calculate() {
+      const num1 = parseFloat(num1El.value);
+      const num2 = parseFloat(num2El.value);
+      const operator = operatorEl.value;
+
+      if (isNaN(num1) || isNaN(num2)) return; // 入力途中は何もしない
 
       let result;
-
       switch (operator) {
-        case '+':
-          result = num1 + num2;
-          break;
-        case '-':
-          result = num1 - num2;
-          break;
-        case '*':
-          result = num1 * num2;
-          break;
+        case '+': result = num1 + num2; break;
+        case '-': result = num1 - num2; break;
+        case '*': result = num1 * num2; break;
         case '/':
-          if (num2 === 0) {
-            alert('0で割ることはできません');
-            return;
-          }
+          if (num2 === 0) return; // 0除算は無視
           result = num1 / num2;
           break;
       }
-
-      const history = document.getElementById('history');
 
       const div = document.createElement('div');
       div.className = 'result-item';
       div.textContent = `${num1} ${operator} ${num2} = ${result}`;
 
-      history.appendChild(div);
+      historyEl.appendChild(div);
     }
+
+    // 入力・変更時に自動計算
+    num1El.addEventListener('input', calculate);
+    num2El.addEventListener('input', calculate);
+    operatorEl.addEventListener('change', calculate);
   </script>
 </body>
 </html>
