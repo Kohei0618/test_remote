@@ -56,8 +56,9 @@
       <option value="/">割り算 (÷)</option>
     </select>
 
-    <div id="history">
-      <h3>計算履歴</h3>
+    <div id="calresult">
+      <h3>計算結果</h3>
+      <div id="result-item"></div>
     </div>
   </div>
 
@@ -65,12 +66,16 @@
     const num1El = document.getElementById('num1');
     const num2El = document.getElementById('num2');
     const operatorEl = document.getElementById('operator');
-    const historyEl = document.getElementById('history');
+    const calresult = document.getElementById('calresult');
 
     function calculate() {
       const num1 = parseFloat(num1El.value);
       const num2 = parseFloat(num2El.value);
       const operator = operatorEl.value;
+
+      if (num1 === null || num2 === null) ;
+        const emptymsg = document.getElementById('result-item');
+        emptymsg.textContent = `両方の数値を入力してください`;
 
       if (isNaN(num1) || isNaN(num2)) return; // 入力途中は何もしない
 
@@ -80,16 +85,17 @@
         case '-': result = num1 - num2; break;
         case '*': result = num1 * num2; break;
         case '/':
-          if (num2 === 0) return; // 0除算は無視
+          if (num2 === 0) ;
+          const errmsg = document.getElementById('result-item');
+          errmsg.textContent = `0で割る事はできません。`;
+          return; // 0除算は無視
           result = num1 / num2;
           break;
       }
 
-      const div = document.createElement('div');
-      div.className = 'result-item';
+      const div = document.getElementById('result-item');
       div.textContent = `${num1} ${operator} ${num2} = ${result}`;
 
-      historyEl.appendChild(div);
     }
 
     // 入力・変更時に自動計算
