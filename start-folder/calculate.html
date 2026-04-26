@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>電卓</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .container {
+      max-width: 400px;
+      margin: auto;
+    }
+    input, select, button {
+      margin: 5px 0;
+      padding: 8px;
+      width: 100%;
+      font-size: 16px;
+    }
+    #history {
+      margin-top: 20px;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
+    }
+    .result-item {
+      margin-bottom: 5px;
+    }
+  </style>
+  </head>
+<body>
+<header>
+  <h1>電卓</h1>
+  <nav>
+    <ul class="nav-list">
+      <li><a href="../index.html">ホーム</a></li>
+      <li><a href="contact.html">問い合わせ</a></li>
+      <li><a href="work.html">課題</a></li>
+      <li><a href="calculate.html">電卓</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <div class="container">
+    <h2>電卓</h2>
+
+    <input type="number" id="num1" placeholder="数値1">
+    <input type="number" id="num2" placeholder="数値2">
+
+    <select id="operator">
+      <option value="+">足し算 (+)</option>
+      <option value="-">引き算 (-)</option>
+      <option value="*">掛け算 (×)</option>
+      <option value="/">割り算 (÷)</option>
+    </select>
+
+    <button onclick="calculate()">計算する</button>
+
+    <div id="history">
+      <h3>計算履歴</h3>
+    </div>
+  </div>
+
+  <script>
+    function calculate() {
+      const num1 = parseFloat(document.getElementById('num1').value);
+      const num2 = parseFloat(document.getElementById('num2').value);
+      const operator = document.getElementById('operator').value;
+
+      if (isNaN(num1) || isNaN(num2)) {
+        alert('数値を正しく入力してください');
+        return;
+      }
+
+      let result;
+
+      switch (operator) {
+        case '+':
+          result = num1 + num2;
+          break;
+        case '-':
+          result = num1 - num2;
+          break;
+        case '*':
+          result = num1 * num2;
+          break;
+        case '/':
+          if (num2 === 0) {
+            alert('0で割ることはできません');
+            return;
+          }
+          result = num1 / num2;
+          break;
+      }
+
+      const history = document.getElementById('history');
+
+      const div = document.createElement('div');
+      div.className = 'result-item';
+      div.textContent = `${num1} ${operator} ${num2} = ${result}`;
+
+      history.appendChild(div);
+    }
+  </script>
+</body>
+</html>
